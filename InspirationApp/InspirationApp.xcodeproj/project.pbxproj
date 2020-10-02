@@ -11,7 +11,13 @@
 		07183F03251C79DD0030F00B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07183F02251C79DD0030F00B /* Router.swift */; };
 		07183F05251C86240030F00B /* AssemblyModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07183F04251C86240030F00B /* AssemblyModelBuilder.swift */; };
 		07183F0D251C98070030F00B /* LoginDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07183F0C251C98070030F00B /* LoginDetailViewController.swift */; };
-		07228972251CCA2A00D4324D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07228971251CCA2A00D4324D /* NetworkService.swift */; };
+		072B5E7C25235D5400D4B46C /* Router2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072B5E7B25235D5400D4B46C /* Router2.swift */; };
+		072B5E7E2523E0EE00D4B46C /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072B5E7D2523E0EE00D4B46C /* ServiceLayer.swift */; };
+		072BC676251DC59D006819BA /* GeneralTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072BC675251DC59D006819BA /* GeneralTabBarController.swift */; };
+		072BC678251DC5E0006819BA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072BC677251DC5E0006819BA /* FeedViewController.swift */; };
+		072BC67A251DC5F8006819BA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072BC679251DC5F8006819BA /* SearchViewController.swift */; };
+		072BC67C251DC665006819BA /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072BC67B251DC665006819BA /* SavedViewController.swift */; };
+		072BC680251E1D18006819BA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072BC67F251E1D18006819BA /* PostModel.swift */; };
 		076C82652519F49F00C08ED8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C82642519F49F00C08ED8 /* AppDelegate.swift */; };
 		076C82672519F49F00C08ED8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C82662519F49F00C08ED8 /* SceneDelegate.swift */; };
 		076C82692519F49F00C08ED8 /* AuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C82682519F49F00C08ED8 /* AuthenticateViewController.swift */; };
@@ -19,6 +25,7 @@
 		076C82712519F4A200C08ED8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 076C82702519F4A200C08ED8 /* Assets.xcassets */; };
 		076C82742519F4A200C08ED8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 076C82722519F4A200C08ED8 /* LaunchScreen.storyboard */; };
 		076C827F2519F4A300C08ED8 /* InspirationAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076C827E2519F4A300C08ED8 /* InspirationAppTests.swift */; };
+		078FD1312526159A004501CF /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FD1302526159A004501CF /* FeedPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,13 @@
 		07183F02251C79DD0030F00B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		07183F04251C86240030F00B /* AssemblyModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModelBuilder.swift; sourceTree = "<group>"; };
 		07183F0C251C98070030F00B /* LoginDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDetailViewController.swift; sourceTree = "<group>"; };
-		07228971251CCA2A00D4324D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		072B5E7B25235D5400D4B46C /* Router2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router2.swift; sourceTree = "<group>"; };
+		072B5E7D2523E0EE00D4B46C /* ServiceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
+		072BC675251DC59D006819BA /* GeneralTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabBarController.swift; sourceTree = "<group>"; };
+		072BC677251DC5E0006819BA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		072BC679251DC5F8006819BA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		072BC67B251DC665006819BA /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
+		072BC67F251E1D18006819BA /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		076C82612519F49F00C08ED8 /* InspirationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InspirationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		076C82642519F49F00C08ED8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		076C82662519F49F00C08ED8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +61,7 @@
 		076C827A2519F4A300C08ED8 /* InspirationAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InspirationAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		076C827E2519F4A300C08ED8 /* InspirationAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspirationAppTests.swift; sourceTree = "<group>"; };
 		076C82802519F4A300C08ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		078FD1302526159A004501CF /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,14 +128,38 @@
 		072BC672251DC463006819BA /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				07228971251CCA2A00D4324D /* NetworkService.swift */,
+				072B5E7B25235D5400D4B46C /* Router2.swift */,
+				072B5E7D2523E0EE00D4B46C /* ServiceLayer.swift */,
+				072BC67F251E1D18006819BA /* PostModel.swift */,
 			);
 			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		072BC67D251DD29F006819BA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				072BC677251DC5E0006819BA /* FeedViewController.swift */,
+				078FD1302526159A004501CF /* FeedPresenter.swift */,
+				072BC679251DC5F8006819BA /* SearchViewController.swift */,
+				072BC67B251DC665006819BA /* SavedViewController.swift */,
+				072BC67E251DD2B1006819BA /* TabBar */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		072BC67E251DD2B1006819BA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				072BC675251DC59D006819BA /* GeneralTabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		076C82582519F49F00C08ED8 = {
 			isa = PBXGroup;
 			children = (
+				072BC672251DC463006819BA /* NetworkLayer */,
+				072BC67D251DD29F006819BA /* TabBar */,
 				076C82632519F49F00C08ED8 /* InspirationApp */,
 				076C827D2519F4A300C08ED8 /* InspirationAppTests */,
 				076C82622519F49F00C08ED8 /* Products */,
@@ -144,7 +182,6 @@
 				076C82662519F49F00C08ED8 /* SceneDelegate.swift */,
 				07183F06251C8D660030F00B /* AuthenticateModule */,
 				072BC671251DC44F006819BA /* RouterWithBuilder */,
-				072BC672251DC463006819BA /* NetworkLayer */,
 				076C82702519F4A200C08ED8 /* Assets.xcassets */,
 				076C82722519F4A200C08ED8 /* LaunchScreen.storyboard */,
 				076C82752519F4A200C08ED8 /* Info.plist */,
@@ -262,13 +299,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072BC676251DC59D006819BA /* GeneralTabBarController.swift in Sources */,
 				076C826F2519F49F00C08ED8 /* InspirationApp.xcdatamodeld in Sources */,
 				076C82692519F49F00C08ED8 /* AuthenticateViewController.swift in Sources */,
 				076C82652519F49F00C08ED8 /* AppDelegate.swift in Sources */,
 				07183F05251C86240030F00B /* AssemblyModelBuilder.swift in Sources */,
-				07228972251CCA2A00D4324D /* NetworkService.swift in Sources */,
+				072BC67A251DC5F8006819BA /* SearchViewController.swift in Sources */,
 				076C82672519F49F00C08ED8 /* SceneDelegate.swift in Sources */,
+				072BC678251DC5E0006819BA /* FeedViewController.swift in Sources */,
 				07183F0D251C98070030F00B /* LoginDetailViewController.swift in Sources */,
+				072B5E7C25235D5400D4B46C /* Router2.swift in Sources */,
+				078FD1312526159A004501CF /* FeedPresenter.swift in Sources */,
+				072BC680251E1D18006819BA /* PostModel.swift in Sources */,
+				072B5E7E2523E0EE00D4B46C /* ServiceLayer.swift in Sources */,
+				072BC67C251DC665006819BA /* SavedViewController.swift in Sources */,
 				07183F03251C79DD0030F00B /* Router.swift in Sources */,
 				07183F01251C76720030F00B /* AuhtenticatePresenter.swift in Sources */,
 			);

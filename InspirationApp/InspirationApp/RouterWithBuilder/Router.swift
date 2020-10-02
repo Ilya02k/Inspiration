@@ -40,7 +40,10 @@ class Router: RouterProtocol {
         }
     }
     func initialTabBarController() {
-        
+        if let navigationController = navigationController {
+            guard let tabBarController = assemblyBuilder?.createTabBarModule(router: self) else { return }
+            navigationController.pushViewController(tabBarController, animated: false)
+        }
     }
     
     func showLoginDetail() {
@@ -49,6 +52,7 @@ class Router: RouterProtocol {
             navigationController.present(loginDetailViewController, animated: true, completion: nil)
         }
     }
+    
     
     func popToRoot() {
         // smth

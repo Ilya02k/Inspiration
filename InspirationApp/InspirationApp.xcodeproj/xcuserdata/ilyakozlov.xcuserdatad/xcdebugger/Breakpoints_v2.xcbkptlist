@@ -48,5 +48,101 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C0AC82ED-4AD9-4FA1-BAD2-4414E69E6FA5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TabBar/FeedPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "getData(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C0AC82ED-4AD9-4FA1-BAD2-4414E69E6FA5 - 8d0c948c0489a3fe"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;InspirationApp.PhotoModel&gt;, Swift.Error&gt;) -&gt; () in InspirationApp.FeedPresenter.getData(completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "InspirationApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ilyakozlov/Documents/projects/ProjectToFindJob/InspirationApp/TabBar/FeedPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "C0AC82ED-4AD9-4FA1-BAD2-4414E69E6FA5 - 8d0c948c0489a3fe"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;InspirationApp.PhotoModel&gt;, Swift.Error&gt;) -&gt; () in InspirationApp.FeedPresenter.getData(completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "InspirationApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ilyakozlov/Documents/projects/ProjectToFindJob/InspirationApp/TabBar/FeedPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "292">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80217918-A078-4C36-8FD4-2198AB47C225"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TabBar/FeedPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getData(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "80217918-A078-4C36-8FD4-2198AB47C225 - 459954660c8b7f23"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "InspirationApp.FeedPresenter.getData(completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "InspirationApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ilyakozlov/Documents/projects/ProjectToFindJob/InspirationApp/TabBar/FeedPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "80217918-A078-4C36-8FD4-2198AB47C225 - 8d0c948c0489a3fe"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;InspirationApp.PhotoModel&gt;, Swift.Error&gt;) -&gt; () in InspirationApp.FeedPresenter.getData(completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "InspirationApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ilyakozlov/Documents/projects/ProjectToFindJob/InspirationApp/TabBar/FeedPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "264">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

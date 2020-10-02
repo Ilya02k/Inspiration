@@ -12,26 +12,32 @@ import UIKit
 protocol AssemblyBuilderProtocol {
     func createAuthenticateModule(router: RouterProtocol) -> UIViewController
     func createLoginDetailModule(router: RouterProtocol) -> UIViewController
+    func createTabBarModule(router: RouterProtocol) -> UITabBarController
+    func createTableViewController(router: RouterProtocol) -> UIViewController
 }
 
 class AssemblyModelBuilder: AssemblyBuilderProtocol {
     
     func createAuthenticateModule(router: RouterProtocol) -> UIViewController {
         let view = AuthenticateViewController()
-        let networkService = NetworkService()
 
-        let presenter = AuthenticatePresenter(view: view, networkService: networkService, router: router)
+        let presenter = AuthenticatePresenter(view: view, router: router)
         view.presenter = presenter
         return view
     }
     
     func createLoginDetailModule(router: RouterProtocol) -> UIViewController {
         let view = LoginDetailViewController()
-        //let networkService = NetworkService()
-//        let presenter = LoginDeta(view: view, networkService: networkService, router: router)
-//        view.presenter = presenter
         return view
-        
+    }
+    
+    func createTabBarModule(router: RouterProtocol) ->UITabBarController {
+        let view = GeneralTabBarController()
+        return view
+    }
+    func createTableViewController(router: RouterProtocol) -> UIViewController {
+        let view = FeedViewController()
+        return view
     }
     
 }
