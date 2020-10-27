@@ -54,6 +54,8 @@ final class ProfileCell: UICollectionViewCell {
     }
     func setup(with model: Post){
        // let presenter: FeedPresenter
+        
+        
         self.presenter.getImage(urlByImage: URL(string: model.imagePostURL!)) {
             [weak self]
             (responseImage)  in

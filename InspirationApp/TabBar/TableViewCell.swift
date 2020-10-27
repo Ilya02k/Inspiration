@@ -26,9 +26,12 @@ class TableViewCell: UITableViewCell {
     
     
     func configureCell(model: AdvancedPhotoModel) -> (){
+        post = model
         authorLabel.text = model.user.name
-        photoImageView.image = model.image
+        photoImageView.image = (model.image != nil) ? model.image : UIImage(named: "placeholder")
+     
 
+        
         var ratio = 1.0
         if let image = model.image {
             ratio = Double(image.size.height/image.size.width)
@@ -61,6 +64,7 @@ class TableViewCell: UITableViewCell {
     }()
     lazy var photoImageView: UIImageView =  {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "placeholder")
         imageView.contentMode = ContentMode.scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

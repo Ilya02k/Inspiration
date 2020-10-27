@@ -30,7 +30,19 @@ class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDa
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
 
-            cell.configureCell(model: self.presenter.dataSource[indexPath.row] )
+        if self.presenter.dataSource[indexPath.row].image == nil {
+
+            cell.photoImageView.image = UIImage(named: "placeholder")
+            self.presenter.getImage(urlByImage: URL(string: self.presenter.dataSource[indexPath.row].urls.regular)) { [weak self] (responseImage) in
+               // DispatchQueue.main.async { [weak self] in
+                    self?.presenter.dataSource[indexPath.row].image = responseImage
+               
+                   // self?.tableView.reloadRows(at: [indexPath], with: .none)
+                    }
+                }
+        
+         cell.configureCell(model: self.presenter.dataSource[indexPath.row] )
+        // cell.post = presenter.dataSource[indexPath.row]
          self.tableView.reloadRows(at: [indexPath], with: .none)
         
         
@@ -49,19 +61,19 @@ class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDa
         return cell
     }
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-
-        if self.presenter.dataSource[indexPath.row].image == nil {
-
-            self.presenter.getImage(urlByImage: URL(string: self.presenter.dataSource[indexPath.row].urls.regular)) { [weak self] (responseImage) in
-               // DispatchQueue.main.async { [weak self] in
-                    self?.presenter.dataSource[indexPath.row].image = responseImage
-               
-                   // self?.tableView.reloadRows(at: [indexPath], with: .none)
-                    }
-                }
-            }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//
+//
+//        if self.presenter.dataSource[indexPath.row].image == nil {
+//
+//            self.presenter.getImage(urlByImage: URL(string: self.presenter.dataSource[indexPath.row].urls.regular)) { [weak self] (responseImage) in
+//               // DispatchQueue.main.async { [weak self] in
+//                    self?.presenter.dataSource[indexPath.row].image = responseImage
+//
+//                   // self?.tableView.reloadRows(at: [indexPath], with: .none)
+//                    }
+//                }
+//            }
         
     
     //MARK:  life cycle's methods
