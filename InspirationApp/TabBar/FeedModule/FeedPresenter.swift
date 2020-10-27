@@ -32,8 +32,10 @@ class FeedPresenter {
             case .success(let array):
                 //self.dataSource.removeAll()
                // DispatchQueue.global(qos: .background).async {
+                DispatchQueue.main.async {
                     self.dataSource.append(contentsOf: array)
                     completion()
+                }
               //  }
                 
             case .failure(let error):

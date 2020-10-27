@@ -12,26 +12,30 @@ class TableViewCell: UITableViewCell {
 
     public var saveBlock:  (() -> ())?
     
-    var heightConstraint = NSLayoutConstraint()
-    var widthConstraint = NSLayoutConstraint()
+    private var heightConstraint: NSLayoutConstraint? {
+        didSet {
+            if let oldValue = oldValue {
+                photoImageView.removeConstraint(oldValue)
+            }
+            if let aspectConstraint = heightConstraint {
+                aspectConstraint.priority = .init(rawValue: 999)
+                aspectConstraint.isActive = true
+            }
+        }
+    }
+    
     
     func configureCell(model: AdvancedPhotoModel) -> (){
         authorLabel.text = model.user.name
         photoImageView.image = model.image
-//        photoImageView.image = post?.image
-//        authorLabel.text = post?.user.name
-//        photoImageView.image = post?.image
-        let ratio = model.height/model.width
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.width * CGFloat(ratio)
-        
-        heightConstraint.constant = height
-        widthConstraint.constant = width
-        //NSLayoutConstraint.activate([
-          //  photoImageView.heightAnchor.constraint(equalToConstant: height),
-        //photoImageView.widthAnchor.constraint(equalToConstant: width)
-       // ])
-        //2photoImageView.sizeToFit()
+
+        var ratio = 1.0
+        if let image = model.image {
+            ratio = Double(image.size.height/image.size.width)
+        }
+
+        heightConstraint = photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor, multiplier: CGFloat(ratio))
+
     }
     var post: AdvancedPhotoModel? {
         didSet {
@@ -46,6 +50,7 @@ class TableViewCell: UITableViewCell {
         //lbl.textColor = .black
        // lbl.font = UIFont.boldSystemFont(ofSize: 16)
        // lbl.textAlignment = .left
+        
         return lbl
     }()
     
@@ -65,7 +70,7 @@ class TableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
-       // stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -73,63 +78,65 @@ class TableViewCell: UITableViewCell {
         return stackView
     }()
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        contentView.addSubview(verticalStackView)
+        verticalStackView.addArrangedSubview(self.authorLabel)
+        verticalStackView.addArrangedSubview(self.photoImageView)
+        verticalStackView.addArrangedSubview(self.favoriteButton)
+
+        
+        NSLayoutConstraint.activate([
+            verticalStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            verticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            verticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            verticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
+        ])
+
+        
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+
+        authorLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+        favoriteButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        favoriteButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
 //    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 //        super.init(style: style, reuseIdentifier: reuseIdentifier)
 //
-//        contentView.addSubview(verticalStackView)
-//        verticalStackView.addArrangedSubview(self.authorLabel)
-//        verticalStackView.addArrangedSubview(self.photoImageView)
-//        verticalStackView.addArrangedSubview(self.favoriteButton)
+//        self.addSubview(authorLabel)
+//        self.addSubview(photoImageView)
 //
-//        NSLayoutConstraint.activate([
-//            verticalStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-//            verticalStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-//            verticalStackView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-//            verticalStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
-//        ])
+//
 //
 //        authorLabel.translatesAutoresizingMaskIntoConstraints = false
-//        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+//        photoImageView.translatesAutoresizingMaskIntoConstraints = false
 //
-//        authorLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
 //
-//        favoriteButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        favoriteButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+//        heightConstraint = photoImageView.heightAnchor.constraint(equalToConstant: 0 )
+//        widthConstraint = photoImageView.widthAnchor.constraint(equalToConstant: 0)
+//
+//
+//        NSLayoutConstraint.activate([
+////            authorLabel.heightAnchor.constraint(equalToConstant: 40),
+////            authorLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
+//            heightConstraint, widthConstraint,
+//
+//            authorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            authorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            authorLabel.topAnchor.constraint(equalTo: self.topAnchor),
+//
+//            photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            photoImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor),
+//            photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//        ])
+//
+//
 //    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.addSubview(authorLabel)
-        self.addSubview(photoImageView)
-        
-    
-        
-        authorLabel.translatesAutoresizingMaskIntoConstraints = false
-        photoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        heightConstraint = photoImageView.heightAnchor.constraint(equalToConstant: 0 )
-        widthConstraint = photoImageView.widthAnchor.constraint(equalToConstant: 0)
-        
-        
-        NSLayoutConstraint.activate([
-//            authorLabel.heightAnchor.constraint(equalToConstant: 40),
-//            authorLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
-            heightConstraint, widthConstraint,
-            
-            authorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            authorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            authorLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            
-            photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            photoImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor),
-            photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-        
-        
-    }
     @objc func configureSaveButton () -> () {
         favoriteButton.addTarget(self, action: #selector(saveToCoreData), for: UIControl.Event.touchUpInside)
     }

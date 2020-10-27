@@ -27,7 +27,7 @@ class PhotoViewController: UIViewController  {
      //   self.view.addSubview(photoImageView)
        // photoImageView.addSubview(favoriteButton)
         
-        self.photoImageView.clipsToBounds = true
+       // self.photoImageView.clipsToBounds = true
         self.photoImageView.contentMode = .scaleAspectFit
         
         
@@ -48,6 +48,7 @@ class PhotoViewController: UIViewController  {
 //            self.favoriteButton.bottomAnchor.constraint(equalTo: self.photoImageView.image.),
 //            self.favoriteButton.trailingAnchor.constraint(equalTo: self.photoImageView.image.trailingAnchor)
 //        ])
+        
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
         self.favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
