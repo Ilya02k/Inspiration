@@ -49,11 +49,7 @@ class TableViewCell: UITableViewCell {
     }
     
      let authorLabel: UILabel = {
-        let lbl = UILabel()
-        //lbl.textColor = .black
-       // lbl.font = UIFont.boldSystemFont(ofSize: 16)
-       // lbl.textAlignment = .left
-        
+        let lbl = UILabel()        
         return lbl
     }()
     

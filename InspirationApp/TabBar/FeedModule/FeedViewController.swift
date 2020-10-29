@@ -55,6 +55,19 @@ class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDa
         return cell
     }
 
+    //MARK: Infinity Scrolling
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let actualPosition = scrollView.contentOffset.y
+        
+        let contentHeight = scrollView.contentSize.height - (tableView.frame.size.height)
+        
+        if (actualPosition >= contentHeight) {
+            self.presenter.getData {
+                    self.tableView.reloadData()
+            }
+        }
+    }
 //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //
 //
