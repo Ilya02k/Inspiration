@@ -11,77 +11,54 @@ import UIKit
 
 class PhotoViewController: UIViewController  {
 
-    var photoImageView: UIImageView
-    let favoriteButton: UIButton
+    private var photoImageView:  UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    private let favoriteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage.init(named: "favorites"), for: UIControl.State.normal)
+        return button
+    }()
     lazy var stackView: UIStackView = {
-    let stackView = UIStackView()
-        stackView.alignment = .fill
+        let stackView = UIStackView()
+        stackView.alignment = .center
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         return stackView
     }()
 
-    func setup() -> (){
-        favoriteButton.setImage(UIImage.init(named: "favorites"), for: UIControl.State.normal)
-        self.view.addSubview(stackView)
-     //   self.view.addSubview(photoImageView)
-       // photoImageView.addSubview(favoriteButton)
-        
-       // self.photoImageView.clipsToBounds = true
-        self.photoImageView.contentMode = .scaleAspectFit
-        
-        
-        self.stackView.addArrangedSubview(self.photoImageView)
-        self.stackView.addArrangedSubview(self.favoriteButton)
-        //self.photoImageView.translatesAutoresizingMaskIntoConstraints = false
-       // self.favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-//        NSLayoutConstraint.activate([
-//            self.photoImageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-//            self.photoImageView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-//
-//            self.favoriteButton.widthAnchor.constraint(equalToConstant: 50),
-//            self.favoriteButton.heightAnchor.constraint(equalToConstant: 50),
-//
-//
-//            self.favoriteButton.bottomAnchor.constraint(equalTo: self.photoImageView.image.),
-//            self.favoriteButton.trailingAnchor.constraint(equalTo: self.photoImageView.image.trailingAnchor)
-//        ])
-        
-        self.stackView.translatesAutoresizingMaskIntoConstraints = false
-        self.favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            self.stackView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            self.favoriteButton.heightAnchor.constraint(equalToConstant: 50),
-            self.favoriteButton.widthAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-   
-   init(cell: ProfileCell) {
-    self.photoImageView = cell.profileImageView
-    self.favoriteButton = UIButton()
-    super.init(nibName: nil, bundle: nil)
-    }
+       func setup() -> () {
+           view.addSubview(photoImageView)
+           
+           photoImageView.addSubview(favoriteButton)
+           
+           photoImageView.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+               photoImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+               photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+               photoImageView.topAnchor.constraint(equalTo: view.topAnchor),
+               photoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+              
+           ])
+       }
+
+    
+       init(cell: ProfileCell) {
+        photoImageView.image = cell.profileImageView.image
+ 
+        super.init(nibName: nil, bundle: nil)
+        }
+    
+    
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

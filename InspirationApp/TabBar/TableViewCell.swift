@@ -108,39 +108,6 @@ class TableViewCell: UITableViewCell {
         favoriteButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//
-//        self.addSubview(authorLabel)
-//        self.addSubview(photoImageView)
-//
-//
-//
-//        authorLabel.translatesAutoresizingMaskIntoConstraints = false
-//        photoImageView.translatesAutoresizingMaskIntoConstraints = false
-//
-//
-//        heightConstraint = photoImageView.heightAnchor.constraint(equalToConstant: 0 )
-//        widthConstraint = photoImageView.widthAnchor.constraint(equalToConstant: 0)
-//
-//
-//        NSLayoutConstraint.activate([
-////            authorLabel.heightAnchor.constraint(equalToConstant: 40),
-////            authorLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width),
-//            heightConstraint, widthConstraint,
-//
-//            authorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            authorLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            authorLabel.topAnchor.constraint(equalTo: self.topAnchor),
-//
-//            photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            photoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            photoImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor),
-//            photoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//        ])
-//
-//
-//    }
     @objc func configureSaveButton () -> () {
         favoriteButton.addTarget(self, action: #selector(saveToCoreData), for: UIControl.Event.touchUpInside)
     }

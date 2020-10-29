@@ -32,7 +32,7 @@ final class ProfileCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        contentView.clipsToBounds = true//? what for?
+        contentView.clipsToBounds = true
         contentView.layer.cornerRadius = Constants.contentViewCornerRadius
         contentView.backgroundColor = .white
 
@@ -55,13 +55,13 @@ final class ProfileCell: UICollectionViewCell {
     func setup(with model: Post){
        // let presenter: FeedPresenter
         
-        
         self.presenter.getImage(urlByImage: URL(string: model.imagePostURL!)) {
-            [weak self]
-            (responseImage)  in
-            DispatchQueue.main.async {
-                self?.profileImageView.image = responseImage
-            }
+             [weak self]
+             (responseImage)  in
+             DispatchQueue.main.async {
+                 self?.profileImageView.image = responseImage
+             }
+
         }
     }
 }

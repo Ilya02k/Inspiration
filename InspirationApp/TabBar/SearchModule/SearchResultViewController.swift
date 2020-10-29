@@ -20,23 +20,51 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         self.dataSource.count
     }
     
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
+//
+//        let oneItem = self.dataSource[indexPath.row]
+//        let height = oneItem.height
+//        let width = oneItem.width
+//        let ratio = height/width
+//        let currentHeight = UIScreen.main.bounds.size.width * CGFloat(ratio)
+//
+//        NSLayoutConstraint.activate([
+//            cell.photoImageView.heightAnchor.constraint(equalToConstant: currentHeight ),
+//            cell.photoImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width)
+//
+//        ])
+//
+//        cell.post = self.dataSource[indexPath.row]
+//        cell.configureSaveButton()
+//        cell.saveBlock = { [weak self]
+//            in
+//            var item = cell.post
+//            if item?.isFavorite == true {
+//                item = self?.presenter.removeFromCoreData(item: &cell.post!)
+//            }
+//            else {
+//                item = self?.presenter.saveToCoreData(item: &cell.post!)
+//            }
+//        }
+//        return cell
+//    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
         
-        let oneItem = self.dataSource[indexPath.row]
-        let height = oneItem.height
-        let width = oneItem.width
-        let ratio = height/width
-        let currentHeight = UIScreen.main.bounds.size.width * CGFloat(ratio)
-        
-        NSLayoutConstraint.activate([
-            cell.photoImageView.heightAnchor.constraint(equalToConstant: currentHeight ),
-            cell.photoImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width)
+        if self.dataSource[indexPath.row].image == nil {
             
-        ])
+            self.presenter.getImage(urlByImage: URL(string: self.dataSource[indexPath.row].urls.regular)) { [weak self] (responseImage) in
+                self?.dataSource[indexPath.row].image = responseImage
+                
+            }
+        }
         
-        cell.post = self.dataSource[indexPath.row]
+        cell.configureCell(model: self.dataSource[indexPath.row] )
+        
+        self.tableView.reloadRows(at: [indexPath], with: .none)
         cell.configureSaveButton()
         cell.saveBlock = { [weak self]
             in
@@ -50,23 +78,22 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        
-        if self.dataSource[indexPath.row].image == nil {
-            // DispatchQueue.global(qos: .background).async {
-            
-            self.presenter.getImage(urlByImage: URL(string: self.dataSource[indexPath.row].urls.regular)) { (responseImage) in
-                DispatchQueue.main.async {
-                    if let cell: TableViewCell  = tableView.cellForRow(at: indexPath) as? TableViewCell {
-                        cell.post?.image = responseImage
-                        cell.layoutIfNeeded()
-                    }
-                }
-            }
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//
+//
+//        if self.dataSource[indexPath.row].image == nil {
+//            // DispatchQueue.global(qos: .background).async {
+//
+//            self.presenter.getImage(urlByImage: URL(string: self.dataSource[indexPath.row].urls.regular)) { (responseImage) in
+//                DispatchQueue.main.async {
+//                    if let cell: TableViewCell  = tableView.cellForRow(at: indexPath) as? TableViewCell {
+//                        cell.post?.image = responseImage
+//                        cell.layoutIfNeeded()
+//                    }
+//                }
+//            }
+//        }
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -27,26 +27,20 @@ class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableViewCell
-
+        
         if self.presenter.dataSource[indexPath.row].image == nil {
-
-            cell.photoImageView.image = UIImage(named: "placeholder")
+            
             self.presenter.getImage(urlByImage: URL(string: self.presenter.dataSource[indexPath.row].urls.regular)) { [weak self] (responseImage) in
-               // DispatchQueue.main.async { [weak self] in
-                    self?.presenter.dataSource[indexPath.row].image = responseImage
-               
-                   // self?.tableView.reloadRows(at: [indexPath], with: .none)
-                    }
-                }
+                self?.presenter.dataSource[indexPath.row].image = responseImage
+                
+            }
+        }
         
-         cell.configureCell(model: self.presenter.dataSource[indexPath.row] )
-        // cell.post = presenter.dataSource[indexPath.row]
-         self.tableView.reloadRows(at: [indexPath], with: .none)
+        cell.configureCell(model: self.presenter.dataSource[indexPath.row] )
         
-        
-      //  cell.setNeedsLayout()
+        self.tableView.reloadRows(at: [indexPath], with: .none)
         cell.configureSaveButton()
         cell.saveBlock = { [weak self]
             in

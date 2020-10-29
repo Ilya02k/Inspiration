@@ -89,6 +89,8 @@ extension SavedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCell.identifier, for: indexPath) as! ProfileCell
         let photo = self.fetchedResultsController.fetchedObjects?[indexPath.row]
+        
+        
         cell.setup(with: photo!)
         return cell
     }
@@ -104,7 +106,6 @@ extension SavedViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell: ProfileCell = collectionView.cellForItem(at: indexPath) as! ProfileCell
         let photoViewController = PhotoViewController.init(cell: cell)
-        
         self.present(photoViewController, animated: true, completion: nil)
     }
 }
