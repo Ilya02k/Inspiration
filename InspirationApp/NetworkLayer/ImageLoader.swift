@@ -18,20 +18,16 @@ class ImageLoader: UIImageView {
     func loadWithUrl(url: URL, completion: @escaping (UIImage?) -> () ) {
         imageURL = url
         image = nil
-//        let serialQueue = DispatchQueue(label: "cacheHandlers")
-//       serialQueue.sync {
-            if let imageFromCache = imageCache.object(forKey: url as NSURL) {
-               // DispatchQueue.main.async {
-                    self.image = imageFromCache
-                     completion(self.image)
-               // }
-              
-              return
-            }
-       // }
+        
+        if let imageFromCache = imageCache.object(forKey: url as NSURL) {
+            self.image = imageFromCache
+            completion(self.image)
+            return
+        }
+        
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-        
+            
             if error != nil {
                 print(error as Any)
                 return
@@ -49,18 +45,10 @@ class ImageLoader: UIImageView {
                     
                 }
                 
-              //  serialQueue.sync {
-                    self.imageCache.setObject(imageToCache, forKey: url as NSURL)
-              //  }
-                
+                self.imageCache.setObject(imageToCache, forKey: url as NSURL)
                 
             }
-           
+            
         }).resume()
-        
-        
     }
-    
-    
-    
 }

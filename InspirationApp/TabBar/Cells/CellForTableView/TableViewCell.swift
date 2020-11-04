@@ -11,7 +11,7 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     public var saveBlock:  (() -> ())?
-    
+    //MARK: Properties
     private var heightConstraint: NSLayoutConstraint? {
         didSet {
             if let oldValue = oldValue {
@@ -25,21 +25,6 @@ class TableViewCell: UITableViewCell {
     }
     
     
-    func configureCell(model: AdvancedPhotoModel) -> (){
-        post = model
-        authorLabel.text = model.user.name
-        photoImageView.image = (model.image != nil) ? model.image : UIImage(named: "placeholder")
-     
-
-        
-        var ratio = 1.0
-        if let image = model.image {
-            ratio = Double(image.size.height/image.size.width)
-        }
-
-        heightConstraint = photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor, multiplier: CGFloat(ratio))
-
-    }
     var post: AdvancedPhotoModel? {
         didSet {
             authorLabel.text = post?.user.name
@@ -77,7 +62,34 @@ class TableViewCell: UITableViewCell {
         
         return stackView
     }()
+    //MARK: ConfigureCell
+    func configureCell(model: AdvancedPhotoModel) -> (){
+        post = model
+        authorLabel.text = model.user.name
+        photoImageView.image = (model.image != nil) ? model.image : UIImage(named: "placeholder")
+     
+
+        
+        var ratio = 1.0
+        if let image = model.image {
+            ratio = Double(image.size.height/image.size.width)
+        }
+
+        heightConstraint = photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor, multiplier: CGFloat(ratio))
+
+    }
     
+    @objc func configureSaveButton () -> () {
+        favoriteButton.addTarget(self, action: #selector(saveToCoreData), for: UIControl.Event.touchUpInside)
+    }
+    
+    @objc private func saveToCoreData () -> () {
+        if (self.saveBlock != nil) {
+            self.saveBlock!()
+        }
+    }
+    
+//MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -103,16 +115,8 @@ class TableViewCell: UITableViewCell {
         favoriteButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         favoriteButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    
-    @objc func configureSaveButton () -> () {
-        favoriteButton.addTarget(self, action: #selector(saveToCoreData), for: UIControl.Event.touchUpInside)
-    }
-    
-    @objc private func saveToCoreData () -> () {
-        if (self.saveBlock != nil) {
-            self.saveBlock!()
-        }
-    }
+ 
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

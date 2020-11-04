@@ -8,10 +8,11 @@
 
 import UIKit
 
-class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDataSource, UITableViewDelegate {
+class FeedViewController: UIViewController, PresenterDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    //MARK: Properties
     let cellId = "cell"
-    let presenter = FeedPresenter(service: .init(session: .shared))
+    let presenter = Presenter(service: .init(session: .shared))
     lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +55,7 @@ class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDa
         }
         return cell
     }
-
+    
     //MARK: Infinity Scrolling
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -64,34 +65,13 @@ class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDa
         
         if (actualPosition >= contentHeight) {
             self.presenter.getData {
-                    self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//
-//
-//        if self.presenter.dataSource[indexPath.row].image == nil {
-//
-//            self.presenter.getImage(urlByImage: URL(string: self.presenter.dataSource[indexPath.row].urls.regular)) { [weak self] (responseImage) in
-//               // DispatchQueue.main.async { [weak self] in
-//                    self?.presenter.dataSource[indexPath.row].image = responseImage
-//
-//                   // self?.tableView.reloadRows(at: [indexPath], with: .none)
-//                    }
-//                }
-//            }
-        
-    
-    //MARK:  life cycle's methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-       
+    //MARK: setup
+    func setup() -> () {
         view.addSubview(self.tableView)
-       // tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -108,17 +88,22 @@ class FeedViewController: UIViewController, FeedPresenterDelegate, UITableViewDa
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
         //
-            self.presenter.getData {
-                    self.tableView.reloadData()
-            }
-        
-
+        self.presenter.getData {
+            self.tableView.reloadData()
+        }
     }
     
-
+    //MARK:  life cycle's methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.setup()
+    }
+    
+    
     
     func showError(error: Error) {
         print(error)
     }
-
+    
 }

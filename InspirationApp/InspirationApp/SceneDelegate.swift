@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -21,9 +22,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let navigationController = UINavigationController()
         let assemblyBuilder = AssemblyModelBuilder()
-        let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder)
-        //router.initialAuthenticateController()
-        router.initialTabBarController()
+        let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder, keyChain: (UIApplication.shared.delegate as! AppDelegate).keyChain )
+        
+
+       // (UIApplication.shared.delegate as! AppDelegate).keyChain.delete("accessToken")
+        
+        if (UIApplication.shared.delegate as! AppDelegate).keyChain.get("accessToken") == nil {
+            router.initialAuthenticateController()
+        }
+        else {
+          router.initialTabBarController()
+        }
+
         window?.rootViewController=navigationController
         window?.makeKeyAndVisible()
     }

@@ -9,14 +9,13 @@
 import Foundation
 import UIKit
 import CoreData
-protocol FeedPresenterDelegate: class {
+protocol PresenterDelegate: class {
     func showError(error: Error)
-//    func updateData()
 }
 
-class FeedPresenter {
+class Presenter {
     
-    weak var delegate: FeedPresenterDelegate?
+    weak var delegate: PresenterDelegate?
     
     let service: NetworkService
     let imageLoader = ImageLoader()
@@ -30,17 +29,13 @@ class FeedPresenter {
         self.service.fetch(.getPhotos) { (result: Result<[AdvancedPhotoModel], Error>) in
             switch result {
             case .success(let array):
-                //self.dataSource.removeAll()
-               // DispatchQueue.global(qos: .background).async {
                 DispatchQueue.main.async {
                     self.dataSource.append(contentsOf: array)
                     completion()
                 }
-              //  }
                 
             case .failure(let error):
                 self.delegate?.showError(error: error)
-                
             }
         }
     }

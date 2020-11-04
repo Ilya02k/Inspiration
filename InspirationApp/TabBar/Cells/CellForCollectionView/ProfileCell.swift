@@ -23,19 +23,19 @@ final class ProfileCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    private let presenter = FeedPresenter(service: .init(session: .shared))
+    private let presenter = Presenter(service: .init(session: .shared))
     override init(frame: CGRect) {
         super.init(frame: .zero)
-     
+        
         setupViews()
         setupLayouts()
     }
-    
+    //MARK: Setup methods
     private func setupViews() {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = Constants.contentViewCornerRadius
         contentView.backgroundColor = .white
-
+        
         contentView.addSubview(profileImageView)
     }
     
@@ -53,19 +53,19 @@ final class ProfileCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func setup(with model: Post){
-       // let presenter: FeedPresenter
+        // let presenter: FeedPresenter
         
         self.presenter.getImage(urlByImage: URL(string: model.imagePostURL!)) {
-             [weak self]
-             (responseImage)  in
-             DispatchQueue.main.async {
-                 self?.profileImageView.image = responseImage
-             }
-
+            [weak self]
+            (responseImage)  in
+            DispatchQueue.main.async {
+                self?.profileImageView.image = responseImage
+            }
+            
         }
     }
 }
-
+//MARK: Extension
 extension ProfileCell: ReusableView {
     static var identifier: String {
         return String(describing: self)

@@ -8,26 +8,30 @@
 
 import Foundation
 import UIKit
-
+import KeychainSwift
 protocol AssemblyBuilderProtocol {
     func createAuthenticateModule(router: RouterProtocol) -> UIViewController
-    func createLoginDetailModule(router: RouterProtocol) -> UIViewController
+    func createLoginDetailModule(router: RouterProtocol, completion: @escaping ()->()) -> (UIViewController)
     func createTabBarModule(router: RouterProtocol) -> UITabBarController
     func createTableViewController(router: RouterProtocol) -> UIViewController
 }
 
 class AssemblyModelBuilder: AssemblyBuilderProtocol {
     
+  //  let
+    
     func createAuthenticateModule(router: RouterProtocol) -> UIViewController {
         let view = AuthenticateViewController()
 
-        let presenter = AuthenticatePresenter(view: view, router: router)
+        let presenter = AuthenticatePresenter(view: view, router: router, service: NetworkService.init(session: .shared))
         view.presenter = presenter
         return view
     }
     
-    func createLoginDetailModule(router: RouterProtocol) -> UIViewController {
-        let view = LoginDetailViewController()
+    func createLoginDetailModule(router: RouterProtocol, completion: @escaping ()->()) -> (UIViewController) {
+        let view = LoginDetailViewController(completion: completion)
+        let presenter = AuthenticatePresenter(view: view, router: router, service: NetworkService.init(session: .shared))
+        view.presenter = presenter
         return view
     }
     

@@ -10,8 +10,18 @@ import UIKit
 
 class AuthenticateViewController: UIViewController {
 
+    public var doOnCompletion: ((AccessToken?) -> ())
     
     var presenter: AuthenticateViewPresenterProtocol!
+     
+    init() {
+        doOnCompletion = { _ in }
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     override func viewDidLoad() {
@@ -46,7 +56,9 @@ class AuthenticateViewController: UIViewController {
     }
     
     @objc func authenticate(){
+
         presenter.tapOnTheLoginButton()
+
     }
 
 

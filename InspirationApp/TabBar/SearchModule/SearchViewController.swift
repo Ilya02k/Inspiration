@@ -8,32 +8,29 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchResultsUpdating, FeedPresenterDelegate {
+class SearchViewController: UIViewController, UISearchResultsUpdating, PresenterDelegate {
     
-
+    //MARK: Properties
     var searchController = UISearchController()
     let searchResultController = SearchResultViewController()
-    let presenter = FeedPresenter(service: .init(session: .shared))
+    let presenter = Presenter(service: .init(session: .shared))
     var searchDataSource = [AdvancedPhotoModel]()
     
 
-    
+    //MARK: Life Cycle's methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setup()
+    }
+    //MARK: setup
+    func setup() -> () {
         searchController = UISearchController.init(searchResultsController: self.searchResultController)
-       // searchResultController.dataSource = self.searchDataSource
         self.presenter.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.sizeToFit()
         self.navigationItem.searchController = searchController
-        self.setup()
-
-        
     }
-    
-    func setup() -> () {
-        //label
-    }
+    //MARK: Search methods
     func updateSearchResults(for searchController: UISearchController) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchController.searchBar)
            perform(#selector(self.reload(_:)), with: searchController.searchBar, afterDelay: 0.75)

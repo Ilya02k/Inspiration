@@ -28,7 +28,6 @@ class NetworkService {
             guard response != nil, let data = data else {
                 return
             }
-          //  let searchResults = da
 
             if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
                 completion(.success(responseObject))

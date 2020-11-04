@@ -10,7 +10,7 @@ import UIKit
 
 
 class PhotoViewController: UIViewController  {
-
+    //MARK: Properties
     private var photoImageView:  UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -29,34 +29,34 @@ class PhotoViewController: UIViewController  {
         stackView.distribution = .fillProportionally
         return stackView
     }()
-
-       func setup() -> () {
-           view.addSubview(photoImageView)
-           
-           photoImageView.addSubview(favoriteButton)
-           
-           photoImageView.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
+    //MARK: Setup
+    func setup() -> () {
+        view.addSubview(photoImageView)
+        
+        photoImageView.addSubview(favoriteButton)
+        
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            
+            photoImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            photoImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            photoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+        ])
+    }
     
-               photoImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-               photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-               photoImageView.topAnchor.constraint(equalTo: view.topAnchor),
-               photoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-              
-           ])
-       }
-
-    
-       init(cell: ProfileCell) {
+    //MARK: initializer
+    init(cell: ProfileCell) {
         photoImageView.image = cell.profileImageView.image
- 
+        
         super.init(nibName: nil, bundle: nil)
-        }
+    }
     
     
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()

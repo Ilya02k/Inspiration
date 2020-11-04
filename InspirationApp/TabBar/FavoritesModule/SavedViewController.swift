@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class SavedViewController: UIViewController {
-
+    
     var dataSource = [AdvancedPhotoModel]()
     
     var viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -19,11 +19,11 @@ class SavedViewController: UIViewController {
         
         let fetchRequest: NSFetchRequest = Post.fetchRequest()
         let frcTemp = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        frcTemp.delegate = self as? NSFetchedResultsControllerDelegate //pay attention later, Ilya! I dont like this cast. smth strange in my opinion
+        frcTemp.delegate = self as? NSFetchedResultsControllerDelegate
         return frcTemp
     }()
-        
-
+    
+    
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
@@ -31,8 +31,8 @@ class SavedViewController: UIViewController {
         return collectionView
     }()
     
-
-
+    
+    
     //MARK: life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,7 @@ class SavedViewController: UIViewController {
             print("\(fetchError), \(fetchError.userInfo)")
         }
     }
-   //MARK: setup
+    //MARK: setup
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -76,9 +76,9 @@ class SavedViewController: UIViewController {
         static let itemHeight: CGFloat = 200.0
     }
     
-
-
-
+    
+    
+    
 }
 //MARK: Data Source Methods
 extension SavedViewController: UICollectionViewDataSource {
@@ -98,7 +98,7 @@ extension SavedViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
 }
 //MARK: Delegate Methods
 extension SavedViewController: UICollectionViewDelegate {
@@ -112,11 +112,11 @@ extension SavedViewController: UICollectionViewDelegate {
 //MARK: DelegateFlowLayout
 extension SavedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let width = itemWidth(for: view.frame.width, spacing: 0)
         return CGSize(width: width, height: LayoutConstant.itemHeight)
     }
-
+    
     func itemWidth(for width: CGFloat, spacing: CGFloat) -> CGFloat {
         let itemsInRow: CGFloat = 3
         return UIScreen.main.bounds.size.width/itemsInRow - LayoutConstant.spacing-3

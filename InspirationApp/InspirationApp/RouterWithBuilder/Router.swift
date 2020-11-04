@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import KeychainSwift
 
 protocol RouterMain {
     var navigationController: UINavigationController? { get set }
@@ -17,20 +17,24 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialAuthenticateController()
-    func showLoginDetail()
+    func showLoginDetail() -> ()
     func popToRoot()
     func initialTabBarController()
+    var keyChain: KeychainSwift { get }
 }
 
 class Router: RouterProtocol {
     
+    
     var navigationController: UINavigationController?
+    var keyChain: KeychainSwift
     
     var assemblyBuilder: AssemblyBuilderProtocol?
     
-    init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol?){
+    init(navigationController: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol?, keyChain: KeychainSwift){
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
+        self.keyChain = keyChain
     }
     
     
@@ -49,11 +53,21 @@ class Router: RouterProtocol {
         }
     }
     
-    func showLoginDetail() {
+    func showLoginDetail () -> () {
         if let navigationController = navigationController {
-            guard let loginDetailViewController = assemblyBuilder?.createLoginDetailModule(router: self) else { return }
-            navigationController.present(loginDetailViewController, animated: true, completion: nil)
+            
+            if let builder = assemblyBuilder {
+                let loginDetailViewController = builder.createLoginDetailModule(router: self) {
+                    DispatchQueue.main.async {
+                        navigationController.dismiss(animated: true, completion: nil)
+                        self.initialTabBarController()
+                    }
+                    
+                }
+                navigationController.present(loginDetailViewController, animated: true, completion: nil)
+            }
         }
+        
     }
     
     
