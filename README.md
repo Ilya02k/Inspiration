@@ -4,7 +4,7 @@ I want to introduce “Inspiration” the app. It is not smth extraordinary, but
 
 # Stack of technology which I use in this app:
 1. MVP.
-2. Core Data to save images in cashe and I created checking of for repeatable puctures. If picture in a cashe. It will not dowload from Server. 
+2. Core Data to save images in cashe and I created checking of for repeatable puctures. If picture in a cashe, it will not dowload from Server. 
 3. Custom network layer.
 4. Autolayout.
 5. Timer for waiting untill user finish his tupping for search. 
