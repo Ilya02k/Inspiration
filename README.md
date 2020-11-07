@@ -1,6 +1,6 @@
 # Inspiration
 ***
-I want to introduce “Inspiration” the app. It doesn’t have some interesting idea or smth extraordinary because when I thought about idea of the app I decided that my main goal is introduce you to you stack of technology which I know.
+I want to introduce “Inspiration” the app. It is not smth extraordinary, but when I thought about idea of the app I decided that my main goal is introduce you to stack of technology which I know.
 
 # Stack of technology which I use in this app:
 1. MVP.
