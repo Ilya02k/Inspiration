@@ -2,7 +2,7 @@
 ***
 I want to introduce “Inspiration” the app. It doesn’t have some interesting idea or smth extraordinary because when I thought about idea of the app I decided that my main goal is introduce you to you stack of technology which I know.
 
-# Stack of technology which I use this app:
+# Stack of technology which I use in this app:
 1. MVP.
 2. Core Data to save images in cashe and I created checking of for repeatable puctures. If picture in a cashe. It will not dowload from Server. 
 3. Custom network layer.
