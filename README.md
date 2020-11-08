@@ -10,6 +10,8 @@ I want to introduce “Inspiration” the app. It is not smth extraordinary, but
 5. Timer for waiting untill user finish his tupping for search. 
 6. Infinity scrolling.
 7. KeyChain for authorization. 
+8. UITableView/UIViewController/UICollectionView.
+9. Automatic resizing of cells depends on size of image. 
 
 <img style="float: left;" src="https://github.com/Ilya02k/ProjectToFindJob/blob/master/Images/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202020-11-07%20%D0%B2%2017.11.26.png?raw=true" width="200"/>
 
